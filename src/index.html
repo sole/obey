@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"> 
+		<title>obey</title>
+		<!-- build:app -->
+		<script src="libs/WebkitAudioContextMonkeyPatch.js"></script>
+		<script src="libs/AudioDetector.js"></script>
+		<script src="libs/Box2dWeb-2.1.a.3.min.js"></script>
+		<script src="libs/RequestAnimationFrame.js"></script>
+		<script src="libs/PageVisibility.js"></script>
+		<script src="libs/B2D.js"></script>
+		<script src="main.js"></script>
+		<!-- endbuild -->
+	</head>
+	<body>
+		<style type="text/css">
+			body {
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+			}
+
+			#txt, #txt a {
+				color: #fff;
+				text-shadow: 1px 1px 1px #000;
+				font-family: monospace;
+			}
+
+			#txt {
+				position: absolute; 
+				width: 100%;
+				text-align: center;
+				opacity: 0.1;
+				-webkit-transition-duration: 0.2s;
+				-webkit-transition-function: ease-in-out;
+			}
+			#txt:hover {
+				opacity: 1;
+			}
+		</style>
+		<div id="txt">obey <a href="">@fiftythirteen</a> :-P</div>
+		<div id="wrapper"></div>
+	</body>
+</html>

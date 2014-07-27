@@ -12,9 +12,9 @@ gulp.task('lint', function() {
 		.pipe(jshint.reporter('default'));
 });
 
-gulp.task('app', function() {
-	return gulp.src(['src/libs/*.js', 'src/*.js'])
-		.pipe(gulp.dest('dist'));
+gulp.task('data', function() {
+	return gulp.src(['src/data/**'])
+		.pipe(gulp.dest('dist/data'));
 });
 
 // Build minified production version including code for analytics
@@ -25,23 +25,21 @@ gulp.task('app-min', function() {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('html', function() {
-	return gulp.src('src/index.html')
-		.pipe(rename('index_uncompressed.html'))
-		.pipe(gulp.dest('dist'));
-});
-
+// The production html file uses only one script file
 gulp.task('html-min', function() {
 	return gulp.src('src/index.html')
 		.pipe(htmlreplace({
-			'app': 'app.min.js'
+			'app': {
+				src: 'app.min.js',
+				tpl: '<script src="%s" defer></script>'
+			}
 		}))
 		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', function() {
-	gulp.watch('src/*.js', ['lint', 'app', 'app-min']);
-	gulp.watch('src/index.html', ['html', 'html-min']);
+	gulp.watch('src/**/*.js', ['lint', 'app-min']);
+	gulp.watch('src/index.html', ['html-min']);
 });
 
-gulp.task('default', ['lint', 'app', 'app-min', 'html', 'html-min', 'watch']);
+gulp.task('default', ['lint', 'data', 'app-min', 'html-min', 'watch']);
