@@ -11,8 +11,17 @@ gulp.task('lint', function() {
 		.pipe(jshint.reporter('default'));
 });
 
-gulp.task('watch', function() {
-	gulp.watch('src/*.js', ['lint']);
+gulp.task('scripts', function() {
+	return gulp.src('src/*.js')
+		.pipe(concat('app.js'))
+		.pipe(gulp.dest('dist'))
+		.pipe(rename('app.min.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['lint', 'watch']);
+gulp.task('watch', function() {
+	gulp.watch('src/*.js', ['lint', 'scripts']);
+});
+
+gulp.task('default', ['lint', 'scripts', 'watch']);
