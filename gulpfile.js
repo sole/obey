@@ -11,4 +11,8 @@ gulp.task('lint', function() {
 		.pipe(jshint.reporter('default'));
 });
 
-gulp.task('default', ['lint']);
+gulp.task('watch', function() {
+	gulp.watch('src/*.js', ['lint']);
+});
+
+gulp.task('default', ['lint', 'watch']);
