@@ -5,6 +5,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var htmlreplace = require('gulp-html-replace');
+var minifycss = require('gulp-minify-css');
 
 gulp.task('lint', function() {
 	return gulp.src('src/*.js')
@@ -25,6 +26,12 @@ gulp.task('app-min', function() {
 		.pipe(gulp.dest('dist'));
 });
 
+gulp.task('css-min', function() {
+	return gulp.src('src/style.css')
+		.pipe(minifycss())
+		.pipe(gulp.dest('dist'));
+});
+
 // The production html file uses only one script file
 gulp.task('html-min', function() {
 	return gulp.src('src/index.html')
@@ -42,4 +49,4 @@ gulp.task('watch', function() {
 	gulp.watch('src/index.html', ['html-min']);
 });
 
-gulp.task('default', ['lint', 'data', 'app-min', 'html-min', 'watch']);
+gulp.task('default', ['lint', 'data', 'app-min', 'css-min', 'html-min', 'watch']);

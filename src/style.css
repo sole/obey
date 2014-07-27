@@ -1,0 +1,24 @@
+body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+#txt, #txt a {
+	color: #fff;
+	text-shadow: 1px 1px 1px #000;
+	font-family: monospace;
+}
+
+#txt {
+	position: absolute; 
+	width: 100%;
+	text-align: center;
+	opacity: 0.1;
+	-webkit-transition-duration: 0.2s;
+	-webkit-transition-function: ease-in-out;
+}
+#txt:hover {
+	opacity: 1;
+}
+
