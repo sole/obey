@@ -20,7 +20,16 @@ gulp.task('data', function() {
 
 // Build minified production version including code for analytics
 gulp.task('app-min', function() {
-	return gulp.src(['src/libs/*.js', 'src/production/ga.js', 'src/*.js'])
+	return gulp.src([
+			'src/libs/WebkitAudioContextMonkeyPatch.js',
+			'src/libs/AudioDetector.js',
+			'src/libs/Box2dWeb-2.1.a.3.js',
+			'src/libs/RequestAnimationFrame.js',
+			'src/libs/PageVisibility.js',
+			'src/libs/B2D.js',
+			'src/production/ga.js',
+			'src/main.js'
+		])
 		.pipe(concat('app.min.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest('dist'));
